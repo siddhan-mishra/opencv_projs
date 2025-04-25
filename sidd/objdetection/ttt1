@@ -1,0 +1,56 @@
+Apologies for the inconvenience, Siddhant. It appears that the previous links to the MobileNet SSD model files are no longer active. Let's proceed with an alternative approach to obtain these files.
+
+📥 Step-by-Step: Downloading MobileNet SSD Model Files
+1. Create a Directory for Model Files
+First, create a directory to store the model files:
+
+bash
+Copy
+Edit
+mkdir -p mobilenet_ssd
+cd mobilenet_ssd
+2. Download the Model Files
+Since the direct links are unavailable, we can use the wget command with alternative sources. However, if these also fail, we can manually download the files using a web browser.
+
+a. Using wget (If Available)
+bash
+Copy
+Edit
+wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/MobileNetSSD_deploy.prototxt
+wget https://github.com/chuanqi305/MobileNet-SSD/raw/master/MobileNetSSD_deploy.caffemodel
+Note: These links are based on the original repository. If they are still inaccessible, proceed to the manual download method below.
+
+b. Manual Download
+Open the following URLs in your web browser:
+
+MobileNetSSD_deploy.prototxt
+
+MobileNetSSD_deploy.caffemodel
+
+Click on the "Download" button or right-click on the "Raw" button and select "Save link as..." to download the files.
+
+Move the downloaded files into the mobilenet_ssd directory you created earlier.
+
+3. Verify the Files
+Ensure that both files are present in the mobilenet_ssd directory:
+
+bash
+Copy
+Edit
+ls mobilenet_ssd
+You should see:
+
+Copy
+Edit
+MobileNetSSD_deploy.caffemodel  MobileNetSSD_deploy.prototxt
+✅ Next Steps
+With the model files in place, you can proceed to run your object detection script. Ensure that your script references the correct paths to these files:
+
+python
+Copy
+Edit
+net = cv2.dnn.readNetFromCaffe(
+    'mobilenet_ssd/MobileNetSSD_deploy.prototxt',
+    'mobilenet_ssd/MobileNetSSD_deploy.caffemodel'
+)
+If you encounter any further issues or need assistance with integrating face or hand detection, feel free to ask!
