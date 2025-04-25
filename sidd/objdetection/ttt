@@ -1,0 +1,98 @@
+Great question, Siddhant! 👨‍💻 Let’s walk you through downloading **MobileNet SSD** files **into your Python virtual environment** on Raspberry Pi.
+
+---
+
+## ✅ Step-by-Step: Setting Up MobileNet SSD in Your Virtual Environment
+
+---
+
+### 📍 1. **Activate your virtual environment**
+If you already have a virtual environment set up (say, named `venv`), activate it:
+
+```bash
+source ~/path_to_your_env/venv/bin/activate
+```
+
+---
+
+### 📍 2. **Install required Python packages**
+
+```bash
+pip install opencv-python numpy
+```
+
+> **Note:** If you're on Raspberry Pi, and this fails due to OpenCV build size, install from the apt repository:
+```bash
+sudo apt install python3-opencv
+```
+
+---
+
+### 📍 3. **Create a folder for model files**
+Make a folder to store the SSD model files:
+
+```bash
+mkdir -p mobilenet_ssd
+cd mobilenet_ssd
+```
+
+---
+
+### 📍 4. **Download the required files**
+
+#### ➤ Download `MobileNetSSD_deploy.prototxt`
+```bash
+wget https://raw.githubusercontent.com/chuanqi305/MobileNet-SSD/master/MobileNetSSD_deploy.prototxt
+```
+
+#### ➤ Download `MobileNetSSD_deploy.caffemodel`
+```bash
+wget https://github.com/chuanqi305/MobileNet-SSD/releases/download/v1.0/MobileNetSSD_deploy.caffemodel
+```
+
+> These are the two files you reference in your Python code:
+```python
+cv2.dnn.readNetFromCaffe(
+    'mobilenet_ssd/MobileNetSSD_deploy.prototxt',
+    'mobilenet_ssd/MobileNetSSD_deploy.caffemodel'
+)
+```
+
+---
+
+### 📍 5. **Place the detection script next to this folder**
+Your directory should look like this:
+
+```
+project_folder/
+│
+├── detect_objects.py
+└── mobilenet_ssd/
+    ├── MobileNetSSD_deploy.prototxt
+    └── MobileNetSSD_deploy.caffemodel
+```
+
+---
+
+### 📍 6. **Run the script**
+Activate your env (if not already) and run:
+
+```bash
+python detect_objects.py
+```
+
+---
+
+## ⚠️ Troubleshooting on Raspberry Pi:
+
+- If RAM is tight, reduce video resolution:
+  ```python
+  cap.set(3, 320)
+  cap.set(4, 240)
+  ```
+- If `cv2.dnn` isn't available, confirm installation with:
+  ```bash
+  python -c "import cv2; print(cv2.__version__)"
+  ```
+
+Need help setting up face or hand detection too in this environment? I can plug that in as well.
